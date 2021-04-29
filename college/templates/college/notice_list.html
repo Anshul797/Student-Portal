@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+<h1 class="myhead1">Notice List</h1>
+<hr>
+<div class="row my-3">
+<div class="col-sm-10 offset-sm-1">
+<form class="form-inline">
+<input class="form-control" type="text" name="si" />
+<input class="btn btn-primary mx-3" type="submit"  />
+</form>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-10 offset-sm-1">
+<table class="table table-hover">
+<thead class="thead-dark">
+<tr><th>Subject</th><th>Branch</th><th>Date</th></tr>
+</thead>
+{%  for n1 in object_list %}
+<tr class="clickable-row" data-href="{% url 'ndet' n1.id %}"><td>{{n1.subject}}</td><td>{{n1.branch}}</td><td>{{n1.crdate}}</td></tr>		
+{%  endfor %}
+</table>
+<h1>{{request.GET.page}}</h1>
+<ul class="pagination">
+    {% for no in paginator.page_range %}
+    {% if no|stringformat:'i'  == request.GET.page  %}
+	    <li class="page-item active"><a class="page-link" href="?page={{ no }}">{{ no }}</a></li>        
+    {% else %}
+	    <li class="page-item"><a class="page-link" href="?page={{ no }}">{{ no }}</a></li>        
+  	{% endif %}
+	{% endfor %}
+</ul>    
+
+</div>
+</div>
+{% endblock %}

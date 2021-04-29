@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}SSEC EDRP{% endblock %}</title>
+<link href="{% static 'vender/bs/css/bootstrap.min.css'%}" rel="stylesheet" type="text/css" />
+<link href="{% static 'vender/fa/css/all.css'%}" rel="stylesheet" type="text/css" />
+<link href="{% static 'style.css'%}" rel="stylesheet" type="text/css" />
+<script src="{% static 'vender/jquery.js'%}"></script>
+<script src="{% static 'vender/popper.js'%}"></script>
+<script src="{% static 'vender/bs/js/bootstrap.js'%}"></script>
+<script>
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+     $('.nav-item .nav-link').each(function(){
+             let  current = location.pathname;
+        console.log(current)
+        let  $this = $(this);
+        // if the current path is like this link, make it active
+        if($this.attr('href').indexOf(current) !== -1){
+            $this.addClass('active');
+        }
+     });
+     $("#reg #id_username").on("input", function(){
+        $.get("/college/chkstu?name="+$(this).val(), function(data, status){
+            $("#err1").html(data);
+            {#ele = document.getElementById("regbtn");#}
+            if(data===null || data===""){
+                $('#regbtn').prop('disabled', false);
+            }
+            else {
+               $('#regbtn').prop('disabled', true);
+            }
+        });
+     });
+});
+</script>
+</head>
+<nav class="navbar navbar-expand-sm bg-transparent">
+<div class="container head2 navbar-expand-sm col-sm-12">
+    <a class="navbar-brand text-black font-weight-bold">SSEC EDRP</a>
+	<a class="navbar-brand text-white"></a>
+	<button class="navbar-toggler" data-toggle="collapse" data-target="#n1" aria-expanded="false" aria-controls="n1">
+		<i class="fa fa-2x fa-bars text-black"></i>
+	</button>
+	<div class="collapse navbar-collapse" id="n1">
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item"><a class="nav-link link1" href="{% url 'home' %}">Home</a></li>
+			<li class="nav-item"><a class="nav-link link1" href="{% url 'contact' %}">Contact</a></li>
+
+			<li class="nav-item"><a class="nav-link link1" href="{% url 'student' %}">Student</a></li>
+        {% if user.is_authenticated and not user.is_superuser%}
+			<li class="nav-item"><a class="nav-link" href="{%  url 'student_edit' student.id   %}">Edit Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="{%  url 'feed' %}">Feedback</a></li>
+
+        {% endif %}
+        {% if user.is_superuser %}
+			<li class="nav-item"><a class="nav-link link1" href="/admin">Admin</a></li>
+        {% endif %}
+        {% if user.is_authenticated %}
+			<li class="nav-item"><a class="nav-link link1" href="{% url 'auth_logout' %}">Logout</a></li>
+			<li class="nav-item"><a class="nav-link link1" href="{% url 'auth_password_change' %}">Change Password</a></li>
+        {% else %}
+			<li class="nav-item"><a class="nav-link link1" href="/accounts/login/?next=/college/">Login</a></li>
+			<li class="nav-item" ><a class="nav-link link1" href="/accounts/register/?next=/college/">Register</a></li>
+        {% endif %}
+		</ul>
+	</div>
+</div>
+</nav>
+<!-- </div> -->
+
+{% block content %}
+{% endblock %}
+ <div class="container-fluid footer pb-3 mb-3 mt-5 bg-dark">
+    <div class="row pt-3">
+        <div class="col-sm-2">
+            <img class="img-fluid" src="{% static 'images/logo1.png' %}" alt="logo">
+        </div>
+        <div class="col-sm-4 d-flex justify-content-center">
+            <div>
+                <h4 class="text-center text-white" style="font-family: 'Raleway', sans-serif";>SSEC EDRP</h4>
+                <ul class="list-group">
+                    <li class="list-group-item bg-transparent borderless"><a class="link1" href="#">Support</a></li>
+                    <li class="list-group-item bg-transparent borderless"><a class="link1" href="#">Support</a></li>
+                    <li class="list-group-item bg-transparent borderless"><a class="link1" href="#">Support</a></li>
+                    <li class="list-group-item bg-transparent borderless"><a class="link1" href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h4 class="text-center text-white" style="font-family: 'Raleway', sans-serif";>Follow Us</h4>
+            <div class="d-flex justify-content-center mt-5">
+                <a class="pr-4 link1" href="#"><i class="fab fa-3x fa-facebook"></i></a>
+                <a class="pr-4 link1" href="#"><i class="fab fa-3x fa-twitter"></i></a>
+                <a class="pr-4 link2" href="#"><i class="fab fa-3x fa-youtube"></i></a>
+                <a class="pr-4 link2" href="#"><i class="fab fa-3x fa-google-plus"></i></a>
+                <a class="pr-4 link2" href="#"><i class="fab fa-3x fa-pinterest"></i></a>
+                <a class="pr-4 link3" href="#"><i class="fab fa-3x fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <h5 class="text-center text-white">Copyright@SSEC.edrp</h5>
+    <h5 class="text-center text-white">Developed by ~ ...</h5>
+    </div>
+</body>
+</html>

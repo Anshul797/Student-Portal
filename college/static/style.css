@@ -1,0 +1,116 @@
+@CHARSET "ISO-8859-1";
+.heading1{
+	height: 80px;
+	background-size: cover;
+    background-position: center;
+}
+.heading2{
+	background-size: cover;
+	background-repeat: repeat-x;
+}
+.heading3{
+	background-size: cover;
+	background-repeat: repeat-x;
+}
+.head2{
+	background-size: cover;
+	opacity: 0.8;
+	color: black;
+}
+
+.head1{
+	font-size: 2.5rem;
+	text-shadow: gray 3px 3px 3px;
+}
+
+.navbar-expand-sm .navbar-nav .nav-link{
+	font-size: 24px;
+	font-weight: bold;
+	color: black;
+	text-shadow: gray 1px 1px 1px;
+}
+
+@media(max-width: 576px){
+.navbar-expand-sm .navbar-nav .nav-link{
+	background-color: black;
+	color: white;
+}
+}
+
+body{
+    background-image: url("images/ppp.jpg");
+}
+.txt2{
+	text-align: center;
+	background-color: #333333;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	text-shadow: black 2px 2px 2px;
+	padding: 4px;
+}
+.myhead1{
+	color: #333333;
+	font-size: 36px;
+	font-weight: bold;
+	text-shadow: white 2px 2px 2px;
+	padding: 4px;
+}
+
+.head3{
+	background-color: #333333;
+	font-size: 36px;
+	font-weight: bold;
+	text-shadow: black 2px 2px 2px;
+	color: white;
+	padding: 4px;
+	border-radius: 20px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.head4{
+	background-color: #333333;
+	font-size: 24px;
+	text-shadow: black 1px 1px 1px;
+	color: white;
+	padding: 2px;
+	border-radius: 10px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.card{
+
+}
+.shd{
+    box-shadow: 3px 3px 3px #99999980;
+}
+.txt-shd{
+    text-shadow: 2px 2px 2px #999999;
+}
+.anim1:hover{
+    transform: scale(1.1);
+}
+.anim1{
+    transition: 1s;
+}
+
+.footer{
+    background-repeat: repeat-x;
+    background-size: cover;
+}
+.link1,.link2,.link3{
+    color: white;
+}
+.link1:hover{
+    color: dodgerblue;
+}
+.link2:hover{
+    color: #f95e3b;
+}
+.link3:hover{
+    color: orangered;
+}
+li.borderless {
+  border: 0 none;
+}

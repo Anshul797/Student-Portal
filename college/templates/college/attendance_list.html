@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+<h1 class="myhead1">Attendance List</h1>
+<hr>
+<div class="row">
+<div class="col-sm-10 offset-sm-1">
+<table class="table table-hover">
+<thead class="thead-dark">
+<tr><th>Subject</th><th>Total Classes</th><th>Attend</th></tr>
+</thead>
+{%  for n1 in object_list %}
+<tr class="clickable-row" data-href="{% url 'atdet' n1.id %}"><td>{{n1.subject}}</td><td>{{n1.total_classes}}</td><td>{{n1.attend}}</td></tr>		
+{%  endfor %}
+</table>
+<ul class="pagination">
+    {% for no in paginator.page_range %}
+    {% if no|stringformat:'i'  == request.GET.page  %}
+	    <li class="page-item active"><a class="page-link" href="?page={{ no }}">{{ no }}</a></li>        
+    {% else %}
+    		{% if no == 1 and request.GET.page == null  %}
+			    <li class="page-item active"><a class="page-link" href="?page={{ no }}">{{ no }}</a></li>        
+		    {% else %}
+			    <li class="page-item"><a class="page-link" href="?page={{ no }}">{{ no }}</a></li>        
+		  	{% endif %}   	
+  	{% endif %}
+	{% endfor %}
+</ul>    
+
+</div>
+</div>
+{% endblock %}

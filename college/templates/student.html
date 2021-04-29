@@ -1,0 +1,85 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+<h1 class="myhead1">Student Details</h1>
+<hr>
+{% if student.branch.name == "All" %}
+<div class="alert alert-dismissible fade show col-sm-4 offset-4 text-center bg-danger text-white">
+    <button class="close" data-dismiss="alert">&times;</button>
+    <strong>NOTE:</strong> Edit Profile for viewing specific branch related info
+</div>
+{% endif %}
+<div class="row">
+<div class="col-sm-6">
+<h1 class="head4">Notice</h1>
+<hr>
+<table class="table">
+<thead>
+<tr><th>Subject</th><th>Branch</th><th>Date</th></tr>
+</thead>
+</table>
+<marquee direction="up" scrollamount="3" style="height: 250px;">
+<table class="table table-hover">
+{%  for n1 in notices %}
+<tr class="clickable-row" data-href="{% url 'ndet' n1.id %}"><td>{{n1.subject}}</td><td>{{n1.branch}}</td><td>{{n1.crdate}}</td></tr>
+{%  endfor %}
+</table>
+</marquee>
+<div class="text-center mb-3">
+<a style="font-weight: bold; color: blue;" href="{% url 'nlist' %}">View All</a>
+</div>
+</div>
+
+<div class="col-sm-6">
+
+<h1 class="head4">Assignment</h1>
+<hr>
+<table class="table table-hover">
+<thead>
+<tr><th>Subject</th><th>Created Date</th><th>Due Date</th></tr>
+</thead>
+{%  for n1 in assignments %}
+<tr class="clickable-row" data-href="{% url 'adet' n1.id %}"><td>{{n1.subject}}</td><td>{{n1.crdate}}</td><td>{{n1.duedate}}</td></tr>
+{%  endfor %}
+</table>
+<div class="text-center mb-3">
+<a style="font-weight: bold; color: blue;" href="{% url 'alist' %}">View All</a>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6">
+<h1 class="head4">Result</h1>
+<hr>
+<table class="table table-hover">
+<thead>
+<tr><th>Subject</th><th>Student</th><th>Marks</th></tr>
+</thead>
+{%  for n1 in results %}
+<tr class="clickable-row" data-href="{% url 'rdet' n1.id %}"><td>{{n1.subject}}</td><td>{{n1.student}}</td><td>{{n1.marks}}</td></tr>
+{%  endfor %}
+</table>
+<div class="text-center mb-3">
+<a style="font-weight: bold; color: blue;" href="{% url 'rlist' %}">View All</a>
+</div>
+</div>
+
+<div class="col-sm-6">
+<h1 class="head4">Attendance</h1>
+<hr>
+<hr>
+<table class="table table-hover">
+<thead>
+<tr><th>Subject</th><th>Total Classes</th><th>Attend</th></tr>
+</thead>
+{%  for n1 in attendances %}
+<tr class="clickable-row" data-href="{% url 'atdet' n1.id %}"><td>{{n1.subject}}</td><td>{{n1.total_classes}}</td><td>{{n1.attend}}</td></tr>
+{%  endfor %}
+</table>
+<div class="text-center mb-3">
+<a style="font-weight: bold; color: blue;" href="{% url 'atlist' %}">View All</a>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1 class="text-center" xmlns="http://www.w3.org/1999/html">Login</h1>
+{% for error in form.non_field_errors %}
+        <div class="alert alert-danger col-sm-6 offset-3">
+            <strong>{{ error|escape }}</strong>
+        </div>
+{% endfor %}
+    <div class="row">
+	<div class="col-sm-8 offset-sm-2">
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+	<p><strong>Username</strong></p><input class="form-control col-sm-6 " type="text" name="username" id="id_username" maxlength="254" autofocus required /><br>
+	<p><strong>Password</strong></p><input class="form-control col-sm-6" type="password" name="password" id="id_password" required /><br>
+	<input class="btn btn-outline-info font-weight-bold"
+                    style="color: darkslateblue;font-family: 'Raleway', sans-serif"type="submit" value="Submit"/>
+</form>
+
+                    <div class="mx-auto mt-2">
+                        <button class="btn btn-outline-info">
+                            <a style="color: darkslateblue;font-weight: bold;font-family: 'Raleway', sans-serif;font-size: 16px;"
+                               href="/accounts/password/reset/">Forgot Password</a>
+                        </button>
+                    </div>
+                    <div class="mt-2">
+                        <button class="btn btn-outline-info">
+                            <a style="color: darkslateblue;font-weight: bold;font-family: 'Raleway', sans-serif;font-size: 16px;"
+                                href="/accounts/register/">New user? Register here</a>
+                        </button>
+                    </div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<script>
+    alert("Your feedback has been submitted successfully. Thank You!");
+    window.open("{% url 'home' %}");
+</script>
+{% endblock %}
